@@ -5,6 +5,7 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import DashboardPage from "../pages/DashboardPage";
 import NotFoundPage from "../pages/NotFoundPage";
+import SignUpPage from "../pages/SignUpPage";
 
 export default function AppRoutes() {
   return (
@@ -14,6 +15,8 @@ export default function AppRoutes() {
 
         <Route path="/login" element={<LoginPage />} />
 
+        <Route path="/signup" element={<SignUpPage />} />
+        
         <Route
           path="/dashboard"
           element={
