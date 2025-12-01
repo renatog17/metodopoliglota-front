@@ -4,19 +4,26 @@ import { postUser } from "../api/apiService";
 export default function SignUpPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await postUser({ email, password });
-      if (response.status === 201) {
-        alert("User registered successfully!");
-      } else {
-        alert("Failed to register user.");
-      }
+      //esse response é importante para pegar o id do user recém criado
     } catch (error) {
-      console.error("Error registering user:", error);
-      alert("An error occurred during registration.");
+      if (error.response && error.response.status === 400) {
+        const errors = error.response.data;
+        const errorMap = {};
+        errors.forEach((err) => {
+          const fieldName = err.field;
+          const reason = err.message;
+          errorMap[fieldName] = reason; 
+        });
+        setErrors(errorMap);
+      } else {
+        console.error("An unexpected error occurred:", error);
+      }
     }
   };
 
@@ -32,24 +39,32 @@ export default function SignUpPage() {
             Email:
           </label>
           <input
+            autoComplete="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.email && (
+            <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+          )}
         </div>
         <div className="mb-6">
           <label className="block text-gray-700 mb-2" htmlFor="password">
             Password:
           </label>
           <input
+            autoComplete="new-password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
             className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
+          {errors.password && (
+            <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+          )}
         </div>
         <button
           type="submit"
