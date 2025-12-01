@@ -1,15 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { AuthProvider } from "./context/AuthContext";
+import AppRoutes from "./routes/AppRoutes";
 
-function App() {
-
+export default function App() {
   return (
-    <>
-      <h1>Metodo Poliglota</h1>
-    </>
-  )
+    <AuthProvider>
+      <AppRoutes />
+    </AuthProvider>
+  );
 }
-
-export default App
