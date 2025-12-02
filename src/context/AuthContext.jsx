@@ -1,9 +1,14 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import {
+  checkLoginRequest,
+  loginRequest,
+  logoutRequest,
+} from "../api/apiService";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -12,20 +17,18 @@ export function AuthProvider({ children }) {
 
   async function checkLogin() {
     setLoading(true);
-
     try {
       const response = await checkLoginRequest();
       const data = response.data;
 
-      if (data.authenticated) {
-        setUser({ username: data.user });
+      if (data.authenticated === true) {
+        setAuthenticated(true);
       } else {
-        setUser(null);
+        setAuthenticated(false);
       }
     } catch {
-      setUser(null);
+      setAuthenticated(false);
     }
-
     setLoading(false);
   }
 
@@ -39,15 +42,15 @@ export function AuthProvider({ children }) {
     } catch {
       return false;
     }
-  }
-  
-  async function logout() {
-    await logoutRequest();
-    setUser(null);
+    return false;
   }
 
+  async function logout() {
+    await logoutRequest();
+    setAuthenticated(false);
+  }
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout }}>
+   <AuthContext.Provider value={{ authenticated, loading, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
