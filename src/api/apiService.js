@@ -20,3 +20,5 @@ const api = axios.create({
 });
 
 export const postUser = (data) => publicApi.post("/user", data);
+export const verifyEmail = (token) => publicApi.post("/email/verify", { token });
+export const resendVerificationToken = (email) => publicApi.post("/email/resend", { email });

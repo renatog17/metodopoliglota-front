@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { postUser } from "../api/apiService";
+import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
@@ -9,8 +11,9 @@ export default function SignUpPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await postUser({ email, password });
-      //esse response é importante para pegar o id do user recém criado
+      await postUser({ email, password });
+      navigate("/verify-email", { state: { email } });
+
     } catch (error) {
       if (error.response && error.response.status === 400) {
         const errors = error.response.data;
