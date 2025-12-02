@@ -19,6 +19,11 @@ const api = axios.create({
   }
 });
 
+// Auth
+export const loginRequest = (email, password) => api.post("/auth/login", { email, password });
+export const logoutRequest = () => api.post("/auth/logout");
+export const checkLoginRequest = () =>api.get("/auth/check");
+
 export const postUser = (data) => publicApi.post("/user", data);
 export const verifyEmail = (token) => publicApi.post("/email/verify", { token });
 export const resendVerificationToken = (email) => publicApi.post("/email/resend", { email });
