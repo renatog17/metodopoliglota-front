@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function LoginPage() {
   const { login, loading, authenticated } = useAuth();
@@ -11,11 +12,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Se já está autenticado, redireciona
-  if (authenticated) {
-    navigate("/dashboard"); // ou qualquer página depois do login
-    return null; // evita renderizar a tela de login
-  }
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/dashboard");
+    }
+  }, [authenticated, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
