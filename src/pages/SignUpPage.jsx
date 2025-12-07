@@ -11,9 +11,9 @@ export default function SignUpPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await postUser({ email, password });
+      const response = await postUser({ email, password });
+      console.log("User registered:", response.data);
       navigate("/verify-email", { state: { email } });
-
     } catch (error) {
       if (error.response && error.response.status === 400) {
         const errors = error.response.data;
@@ -21,12 +21,24 @@ export default function SignUpPage() {
         errors.forEach((err) => {
           const fieldName = err.field;
           const reason = err.message;
-          errorMap[fieldName] = reason; 
+          errorMap[fieldName] = reason;
         });
         setErrors(errorMap);
-      } else {
-        console.error("An unexpected error occurred:", error);
       }
+
+      if (error.response && error.response.status === 409) {
+        const apiError = error.response.data;
+
+        console.log("API Error:", apiError);
+
+        setErrors({
+          [apiError.field || "email"]: apiError.message,
+        });
+
+        return;
+      }
+
+      console.error("Unexpected error:", error);
     }
   };
 
