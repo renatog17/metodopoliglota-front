@@ -29,3 +29,7 @@ export const verifyEmail = (token) => publicApi.post("/email/verify", { token })
 export const resendVerificationToken = (email) => publicApi.post("/email/resend", { email });
 export const requestPasswordReset = (email) => publicApi.post("/password/forget", { email });
 export const resetPassword = (email, token, password) => publicApi.post("/password/reset", { email, token, password });
+
+//private
+export const fetchDecks = () => api.get("/decks");
+export const createLexeme = (data) => api.post("/lexemes", data);
