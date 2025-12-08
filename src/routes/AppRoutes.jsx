@@ -10,6 +10,7 @@ import VerifyEmailPage from "../pages/VerifyEmailPage";
 import ForgotPasswordPage from "../pages/ForgetPasswordPage";
 import ResetPasswordPage from "../pages/ResetPasswordPage";
 import Layout from "../components/Layout";
+import DeckPage from "../pages/DeckPage";
 
 export default function AppRoutes() {
   return (
@@ -35,6 +36,7 @@ export default function AppRoutes() {
           }
         >
           <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/decks/:id" element={<DeckPage />} />
         </Route>
 
         <Route path="*" element={<NotFoundPage />} />
