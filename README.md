@@ -1,17 +1,40 @@
-# React + Vite
+# Método Poliglota – Flashcard App (React + Vite + Tailwind)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Método Poliglota é um aplicativo de flashcards focado em aprendizado de idiomas.  
+Este projeto utiliza **React**, **Vite** e **TailwindCSS**, além de um contexto global para gerenciar os decks do usuário.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias
 
-## React Compiler
+- **React 18**
+- **Vite**
+- **TailwindCSS**
+- **React Router**
+- **Context API**
+- **JavaScript (ES2023)**
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📌 Funcionalidades
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# metodopoliglota-front
+### ✔️ Gestão de Decks
+- Listagem de decks do usuário.
+- Visualização de nome, idioma e descrição.
+- Navegação dinâmica via React Router.
+
+### ✔️ Flashcards (Lexemes)
+- Carrossel de flashcards mostrando **um card por vez**.
+- Botões de avançar e voltar.
+- Estilo otimizado para dispositivos móveis (mobile-first).
+- Cards incluem:
+  - Lexeme (palavra ou expressão)
+  - Descrição
+  - Levels associados
+
+### ✔️ Contexto Global
+- Os dados do usuário e seus decks são manipulados via `UserDataProvider`.
+
+---
+
+
