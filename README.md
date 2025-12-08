@@ -3,6 +3,10 @@
 Método Poliglota é um aplicativo de flashcards focado em aprendizado de idiomas.  
 Este projeto utiliza **React**, **Vite** e **TailwindCSS**, além de um contexto global para gerenciar os decks do usuário.
 
+## Related Repositories
+
+- Backend: [Método Poliglota](https://github.com/renatog17/metodopoliglota)
+
 ---
 
 ## 🚀 Tecnologias
