@@ -33,3 +33,4 @@ export const resetPassword = (email, token, password) => publicApi.post("/passwo
 //private
 export const fetchDecks = () => api.get("/decks");
 export const createLexeme = (data) => api.post("/lexemes", data);
+export const deleteLexeme = (lexemeId) => api.delete(`/lexemes/${lexemeId}`);
